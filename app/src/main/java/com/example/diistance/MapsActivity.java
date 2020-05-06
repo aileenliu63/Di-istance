@@ -73,7 +73,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-
         // Add a marker at THS and move the camera
         LatLng ths = new LatLng(42.6106062,-83.2363467);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ths, 16));
@@ -189,7 +188,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onPoiClick(PointOfInterest poi) {
         Toast.makeText(getApplicationContext(),
-                        poi.name + "\nPlace ID:" + poi.placeId +
+                        poi.name +
                         "\nLatitude:" + poi.latLng.latitude +
                         " Longitude:" + poi.latLng.longitude,
                 Toast.LENGTH_SHORT).show();

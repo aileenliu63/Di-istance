@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "144855136252",
+    "firebase_url": "https://hackathon-276400.firebaseio.com",
+    "project_id": "hackathon-276400",
+    "storage_bucket": "hackathon-276400.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144855136252:android:b744388854d875e905e479",
+        "android_client_info": {
+          "package_name": "com.example.diistance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144855136252-0mt093q03egchai1dd0obn9oa3emetjo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDc5GInKPA36MwAdccm41BpGvJnM6MmyMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144855136252-0mt093q03egchai1dd0obn9oa3emetjo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

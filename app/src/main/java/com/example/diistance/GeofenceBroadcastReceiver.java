@@ -54,8 +54,8 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
         if (geofenceTransition == transitionType) {
             if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_ENTER) {
                 if (PEOPLE_COUNT > MAX_PEOPLE_COUNT){
-                    Toast.makeText(context, "Too Many People in the Geofence", Toast.LENGTH_SHORT).show();
-                    notificationHelper.sendNotification("Too Many People in the Geofence", MapsActivity.class);
+                    Toast.makeText(context, (PEOPLE_COUNT-MAX_PEOPLE_COUNT)+" Too Many People in the Geofence", Toast.LENGTH_SHORT).show();
+                    notificationHelper.sendNotification((PEOPLE_COUNT-MAX_PEOPLE_COUNT)+" Too Many People in the Geofence", MapsActivity.class);
                 }else {
                     Toast.makeText(context, "Entering the Geofence", Toast.LENGTH_SHORT).show();
                     notificationHelper.sendNotification("Entering the Geofence", MapsActivity.class);
@@ -63,15 +63,15 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
 
             }else if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_DWELL) {
                 if (PEOPLE_COUNT > MAX_PEOPLE_COUNT){
-                    Toast.makeText(context, "Too Many People in the Geofence", Toast.LENGTH_SHORT).show();
-                    notificationHelper.sendNotification("Too Many People in the Geofence", MapsActivity.class);
+                    Toast.makeText(context, (PEOPLE_COUNT-MAX_PEOPLE_COUNT)+" Too Many People in the Geofence", Toast.LENGTH_SHORT).show();
+                    notificationHelper.sendNotification((PEOPLE_COUNT-MAX_PEOPLE_COUNT)+" Too Many People in the Geofence",MapsActivity.class);
                 }else {
                     Toast.makeText(context, "In the Geofence", Toast.LENGTH_SHORT).show();
                 }
             }else if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_EXIT) {
                 if (PEOPLE_COUNT > MAX_PEOPLE_COUNT){
-                    Toast.makeText(context, "Still Too Many People in the Geofence", Toast.LENGTH_SHORT).show();
-                    notificationHelper.sendNotification("Still Too Many People in the Geofence", MapsActivity.class);
+                    Toast.makeText(context, "Still "+ (PEOPLE_COUNT-MAX_PEOPLE_COUNT)+ " Too Many People in the Geofence", Toast.LENGTH_SHORT).show();
+                    notificationHelper.sendNotification("Still "+ (PEOPLE_COUNT-MAX_PEOPLE_COUNT)+ " Too Many People in the Geofence", MapsActivity.class);
                 }else {
                     Toast.makeText(context, "Leaving the Geofence", Toast.LENGTH_SHORT).show();
                     notificationHelper.sendNotification("Leaving the Geofence", MapsActivity.class);
