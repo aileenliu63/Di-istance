@@ -15,7 +15,7 @@ public class GeofenceHelper extends ContextWrapper {
 
     private static final String TAG = "GeofenceHelper";
     PendingIntent pendingIntent;
-
+    public int PEOPLE_COUNT = 0;
     public GeofenceHelper(Context base) {
         super(base);
     }
@@ -23,7 +23,7 @@ public class GeofenceHelper extends ContextWrapper {
     public GeofencingRequest getGeofencingRequest(Geofence geofence) {
         return new GeofencingRequest.Builder()
                 .addGeofence(geofence)
-                .setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
+                .setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_DWELL)
                 .build();
     }
 
@@ -64,16 +64,4 @@ public class GeofenceHelper extends ContextWrapper {
         }
         return e.getLocalizedMessage();
     }
-
-
-    /*if(geoFenceTransition == Geofence.geofencingEvent.GEOFENCE_TRANSITION_ENTER){
-        people = people+1;
-    }
-        else if(geoFenceTransition == Geofence.geofencingEvent.GEOFENCE_TRANSITION_EXIT){
-        people = people-1;
-    }
-        if(people>=max_people){
-        System.out.println("Too many people!");
-    }
-     */
 }

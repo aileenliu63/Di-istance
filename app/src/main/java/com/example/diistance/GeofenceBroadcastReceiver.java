@@ -31,6 +31,19 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
             return;
         }
 
+        //counter
+        int PEOPLE_COUNT = 0;
+        int MAX_PEOPLE_COUNT = 0;
+
+        //get transition type
+        int geofenceTransition = geofencingEvent.getGeofenceTransition();
+
+        if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_ENTER) {
+            PEOPLE_COUNT++;
+        } else if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_EXIT) {
+            PEOPLE_COUNT--;
+        }
+
         List<Geofence> geofenceList = geofencingEvent.getTriggeringGeofences();
         for (Geofence geofence: geofenceList) {
             Log.d(TAG, "onReceive: " + geofence.getRequestId());
@@ -38,19 +51,32 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
 //        Location location = geofencingEvent.getTriggeringLocation();
         int transitionType = geofencingEvent.getGeofenceTransition();
 
-        switch (transitionType) {
-            case Geofence.GEOFENCE_TRANSITION_ENTER:
-                Toast.makeText(context, "GEOFENCE_TRANSITION_ENTER", Toast.LENGTH_SHORT).show();
-                notificationHelper.sendNotification("entering the geofence", "", MapsActivity.class);
-                break;
-            case Geofence.GEOFENCE_TRANSITION_DWELL:
-                Toast.makeText(context, "GEOFENCE_TRANSITION_DWELL", Toast.LENGTH_SHORT).show();
-                notificationHelper.sendNotification("", "", MapsActivity.class);
-                break;
-            case Geofence.GEOFENCE_TRANSITION_EXIT:
-                Toast.makeText(context, "GEOFENCE_TRANSITION_EXIT", Toast.LENGTH_SHORT).show();
-                notificationHelper.sendNotification("leaving the geofence", "", MapsActivity.class);
-                break;
+        if (geofenceTransition == transitionType) {
+            if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_ENTER) {
+                if (PEOPLE_COUNT > MAX_PEOPLE_COUNT){
+                    Toast.makeText(context, "Too Many People in the Geofence", Toast.LENGTH_SHORT).show();
+                    notificationHelper.sendNotification("Too Many People in the Geofence", MapsActivity.class);
+                }else {
+                    Toast.makeText(context, "Entering the Geofence", Toast.LENGTH_SHORT).show();
+                    notificationHelper.sendNotification("Entering the Geofence", MapsActivity.class);
+                }
+
+            }else if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_DWELL) {
+                if (PEOPLE_COUNT > MAX_PEOPLE_COUNT){
+                    Toast.makeText(context, "Too Many People in the Geofence", Toast.LENGTH_SHORT).show();
+                    notificationHelper.sendNotification("Too Many People in the Geofence", MapsActivity.class);
+                }else {
+                    Toast.makeText(context, "In the Geofence", Toast.LENGTH_SHORT).show();
+                }
+            }else if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_EXIT) {
+                if (PEOPLE_COUNT > MAX_PEOPLE_COUNT){
+                    Toast.makeText(context, "Still Too Many People in the Geofence", Toast.LENGTH_SHORT).show();
+                    notificationHelper.sendNotification("Still Too Many People in the Geofence", MapsActivity.class);
+                }else {
+                    Toast.makeText(context, "Leaving the Geofence", Toast.LENGTH_SHORT).show();
+                    notificationHelper.sendNotification("Leaving the Geofence", MapsActivity.class);
+                }
+            }
         }
 
     }

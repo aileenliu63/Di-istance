@@ -44,7 +44,7 @@ public class NotificationHelper extends ContextWrapper {
         manager.createNotificationChannel(notificationChannel);
     }
 
-    public void sendNotification(String title, String body, Class activityName) {
+    public void sendNotification(String title, Class activityName) {
 
         Intent intent = new Intent(this, activityName);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 267, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -54,7 +54,7 @@ public class NotificationHelper extends ContextWrapper {
 //                .setContentText(body)
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setStyle(new NotificationCompat.BigTextStyle().setSummaryText("summary").setBigContentTitle(title).bigText(body))
+                .setStyle(new NotificationCompat.BigTextStyle().setSummaryText("summary").setBigContentTitle(title))
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .build();
